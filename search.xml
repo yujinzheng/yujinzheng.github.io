@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[你好，HEXO]]></title>
-    <url>%2F2018%2F11%2F09%2F%E4%BD%A0%E5%A5%BD%EF%BC%8CHEXO%2F</url>
-    <content type="text"><![CDATA[人生不如意之事十之八九，唯求问心无愧，但愿实现自我而已。 世界太大，有趣的人太多，人生太短，真是遗憾呐。 一个人很难改变世界，但是他可以从改变自己开始。尽最大的努力认真地活，有可能的话，再向外界释放自己的善意，这就够了。改变世界很有可能不是你的大刀阔斧，而是你善良的一盏灯。]]></content>
-      <categories>
-        <category>灯下漫笔</category>
-      </categories>
-      <tags>
-        <tag>杂谈</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F2018%2F11%2F09%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
