@@ -1,668 +1,255 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '6.6.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="请输入密码以阅读这篇博客.">
-<meta name="keywords" content="杂谈">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yujinzheng.com","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="曾经和父母聊起过，世界上最可怕的疾病就是穷病，父亲不服气，还笑话我说我钻进钱眼里了，如今看了《我不是药神》，更加坚定了我的认识：世上只有一种病————穷病。 我无意评价影片中程勇触犯法律的做法是否正确，也不想批判格列宁定价过高的问题，只是单纯想探讨一下，穷病给人带来的痛苦。 首先，穷病会扼杀人的想象力。当一个人为了生计而奔波，脑海里的事情只剩下如何解决下一顿饭时，他就已经被生活狠狠地扼住了喉咙，失">
 <meta property="og:type" content="website">
 <meta property="og:title" content="世上只有一种病————穷病">
-<meta property="og:url" content="http://yujinzheng.com/私人博客/世上只有一种病————穷病.html">
+<meta property="og:url" content="http://yujinzheng.com/%E7%A7%81%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E4%B8%96%E4%B8%8A%E5%8F%AA%E6%9C%89%E4%B8%80%E7%A7%8D%E7%97%85%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E7%A9%B7%E7%97%85.html">
 <meta property="og:site_name" content="Yu&#39;s Blog">
-<meta property="og:description" content="请输入密码以阅读这篇博客.">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-03T20:22:52.751Z">
+<meta property="og:description" content="曾经和父母聊起过，世界上最可怕的疾病就是穷病，父亲不服气，还笑话我说我钻进钱眼里了，如今看了《我不是药神》，更加坚定了我的认识：世上只有一种病————穷病。 我无意评价影片中程勇触犯法律的做法是否正确，也不想批判格列宁定价过高的问题，只是单纯想探讨一下，穷病给人带来的痛苦。 首先，穷病会扼杀人的想象力。当一个人为了生计而奔波，脑海里的事情只剩下如何解决下一顿饭时，他就已经被生活狠狠地扼住了喉咙，失">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-11-10T14:44:14.000Z">
+<meta property="article:modified_time" content="2018-12-03T20:22:52.751Z">
+<meta property="article:author" content="Yujinzheng">
+<meta property="article:tag" content="杂谈">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="世上只有一种病————穷病">
-<meta name="twitter:description" content="请输入密码以阅读这篇博客.">
+
+
+<link rel="canonical" href="http://yujinzheng.com/%E7%A7%81%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E4%B8%96%E4%B8%8A%E5%8F%AA%E6%9C%89%E4%B8%80%E7%A7%8D%E7%97%85%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E7%A9%B7%E7%97%85">
 
 
 
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"http://yujinzheng.com/%E7%A7%81%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E4%B8%96%E4%B8%8A%E5%8F%AA%E6%9C%89%E4%B8%80%E7%A7%8D%E7%97%85%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E7%A9%B7%E7%97%85.html","path":"私人博客/世上只有一种病————穷病.html","title":"世上只有一种病————穷病"}</script>
 
-
-
-  <link rel="canonical" href="http://yujinzheng.com/私人博客/世上只有一种病————穷病.html">
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>世上只有一种病————穷病 | Yu's Blog</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>世上只有一种病————穷病 | Yu's Blog
+</title>
   
-
-
-
-
-
-
-
 
 
 
 
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Yu's Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-    
   </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Yu's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
 
 
 <nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-
-      
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
-        </li>
-      
-    </ul>
-  
-
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
 </nav>
 
 
 
-  
-
-
 
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yujinzheng</p>
+  <div class="site-description" itemprop="description">小站杂记</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-            
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-    
-    
-    <div class="post-block page">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">世上只有一种病————穷病</h1>
-
-<div class="post-meta">
+    <div class="main-inner page posts-expand">
   
   
 
 
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header">
 
+<h1 class="post-title" itemprop="name headline">世上只有一种病————穷病
+</h1>
+
+<div class="post-meta-container">
 </div>
 
 </header>
 
       
       
-      
       <div class="post-body">
-        
-        
-          <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<div id="hbe-security">
-  <div class="hbe-input-container">
-  <input type="password" class="hbe-form-control" id="pass" placeholder="请输入密码以阅读这篇博客.">
-    <label for="pass">请输入密码以阅读这篇博客.</label>
-    <div class="bottom-line"></div>
-  </div>
-</div>
-<div id="decryptionError" style="display: none;">Incorrect Password!</div>
-<div id="noContentError" style="display: none;">No content to display!</div>
-<div id="encrypt-blog" style="display:none">
-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
-</div>
-<script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
-        
+          <p>曾经和父母聊起过，世界上最可怕的疾病就是穷病，父亲不服气，还笑话我说我钻进钱眼里了，如今看了《我不是药神》，更加坚定了我的认识：世上只有一种病————穷病。</p>
+<p>我无意评价影片中程勇触犯法律的做法是否正确，也不想批判格列宁定价过高的问题，只是单纯想探讨一下，穷病给人带来的痛苦。</p>
+<p>首先，穷病会扼杀人的想象力。当一个人为了生计而奔波，脑海里的事情只剩下如何解决下一顿饭时，他就已经被生活狠狠地扼住了喉咙，失去了想象的资格。很多人都在说，只要穷人稍稍努力一点，就能够脱贫向富，甚至能够举出几个耳熟能详的例子来佐证他们的观点，可是，他们并没有看到更广大的穷人是如何在贫困线上挣扎，为了生计而疲于奔命。我们不否认穷人中也有人具有想象力，能够积极自救，改变自己的境遇，但是对于更多的人来说，穷就像一个大山，让他们喘不过气来，为了生存，他们必须花费一切精力，而因为被生计挤占了所有空间，他们无法在自己和后代身上有更多的投入，一旦年龄到了，谋生能力减弱，甚至会成为家人的负担，进一步跌入贫穷的深渊，这就是一个恶性循环，让人无力挣脱。所以说，为什么寒门难出贵子总是普遍现象，因为贫穷扼杀了他们，没有想象力的人生是可怕的，看不清未来的路让他们的路越来越窄，最终被贫穷吞噬。</p>
+<p>其次，贫穷会抹杀人的尊严。</p>
+
       </div>
       
       
       
     </div>
-    
-
-
 
     
     
-    
-  </div>
 
 
-          </div>
-          
+</div>
+  </main>
 
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Yujinzheng</p>
-              <p class="site-description motion-element" itemprop="description">个人杂记</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">1</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Yujinzheng</span>
-
-  
-    <span class="post-meta-divider">|</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-    
-    <span title="站点总字数"></span>
-  
-
-  
-    <span class="post-meta-divider">|</span>
+    <span title="站点总字数">1k</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    
-    <span title="站点阅读时长"></span>
-  
+    <span title="站点阅读时长">1 分钟</span>
+  </span>
 </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div><script color="0,0,0" opacity="0.75" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
+    </div>
+  </footer>
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
-    
-
-    
-	
-    
-
-    
-  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    
-      
-  
-  <script type="text/javascript" color="0,0,0" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
-
-
-
-  
 
 
 
@@ -671,362 +258,6 @@ U2FsdGVkX19cBZbmohOOwdHnYzy71RN+rrUhmtHaoCPRbthIH4jkv5m5Rzsj+dP45LmB3pIEeXsWBIxN
 
 
 
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>
