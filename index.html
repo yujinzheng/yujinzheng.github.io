@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -202,10 +202,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-08-24 01:48:25 / 修改时间：23:55:26" itemprop="dateCreated datePublished" datetime="2021-08-24T01:48:25+08:00">2021-08-24</time>
+      <time title="创建时间：2021-08-24 01:48:25" itemprop="dateCreated datePublished" datetime="2021-08-24T01:48:25+08:00">2021-08-24</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-25 00:05:13" itemprop="dateModified" datetime="2021-08-25T00:05:13+08:00">2021-08-25</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -243,56 +249,14 @@
     <div class="post-body" itemprop="articleBody">
           <h2 id="设计模式的定义与特点"><a href="#设计模式的定义与特点" class="headerlink" title="设计模式的定义与特点"></a>设计模式的定义与特点</h2><p>在现实生活中，我们经常遇到实现目标存在多种策略可供选择的场景，比如出行的时候可以步行、乘公交、乘地跌、自驾等，付款时可以选择现金支付、支付宝支付、微信支付等。</p>
 <p>在软件开发中叶经常遇到类似的情况，某种方案的实现可以采用多种算法或策略，我们可以根据实际情况采取不同的算法或策略来完成功能。如果我们使用条件语句来选择策略或算法，那么每当策略变更时，我们可能都会面临原代码的修改，不利于代码的维护，也违背了“软件对扩展开放，对修改关闭”的设计原则，因此，我们引入了<strong>策略模式</strong>。</p>
-<p><strong>定义</strong>：策略模式定义了一系列算法，并将每个算法封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。</p>
-<p>策略模式的主要优点如下：</p>
-<ol>
-<li>策略模式提供了一系列可供重用的算法族，可以通过继承将算法族的公共代码转移到父类中，减少重复代码</li>
-<li>策略模式可以提供相同行为的不同实现，客户可以根据实际请款选择不同的策略</li>
-<li>策略模式满足了“软件对扩展开放，对修改关闭”的设计原则，可以在不修改原代码的情况下，灵活新增策略</li>
-</ol>
-<p>策略模式的主要缺点如下：</p>
-<ol>
-<li>客户必须知道所有策略算法的区别，以便适时选择恰当的算法</li>
-<li>策略模式造成了很多策略类，增加维护难度</li>
-</ol>
-<h2 id="策略模式的结构与实现"><a href="#策略模式的结构与实现" class="headerlink" title="策略模式的结构与实现"></a>策略模式的结构与实现</h2><p>根据策略模式的定义，策略模式由两部分组成：持有策略引用的环境类以及一系列的算法族，考虑到“多用组合，少用继承”的设计原则与“算法之间可以互相替换”的要求，这些算法族实现同一个接口，并且复写同一个调用方法。策略模式的重心不是如何实现算法，而是如何组织算法，从而让程序结构更加灵活，具有良好的维护性和扩展性。</p>
-<h3 id="模式的结构"><a href="#模式的结构" class="headerlink" title="模式的结构"></a>模式的结构</h3><p>策略模式的主要角色如下：</p>
-<ol>
-<li>算法接口：算法族中的算法都需要实现这个接口，并且覆写同一个调用方法</li>
-<li>具体算法类：实现了算法接口，提供具体的算法实现</li>
-<li>环境类：持有一个算法接口的引用，客户可以使用环境类来调用不同的策略</li>
-</ol>
-<p>其结构图如图1所示：</p>
-<div>
-    <center>
-    <img src="../images/strategy01.png" alt="策略模式结构图">
-    图1 策略模式结构图
-    </center>
-</div>
-
-<h3 id="策略模式的实现"><a href="#策略模式的实现" class="headerlink" title="策略模式的实现"></a>策略模式的实现</h3><p>策略模式实现的代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrategyPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Context context = <span class="keyword">new</span> Context();</span><br><span class="line">        Strategy concreteStrategyA = <span class="keyword">new</span> ConcreteStrategyA();</span><br><span class="line">        Strategy concreteStrategyB = <span class="keyword">new</span> ConcreteStrategyB();</span><br><span class="line">        context.setStrategy(concreteStrategyA);</span><br><span class="line">        context.strategyMethod();</span><br><span class="line">        System.out.println(<span class="string">&quot;=====================&quot;</span>);</span><br><span class="line">        context.setStrategy(concreteStrategyB);</span><br><span class="line">        context.strategyMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">strategyMethod</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyA</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">strategyMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行策略A&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyB</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">strategyMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行策略B&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span> </span>&#123;</span><br><span class="line">    Strategy strategy;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStrategy</span><span class="params">(Strategy strategy)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.strategy = strategy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Strategy <span class="title">getStrategy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> strategy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">strategyMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        strategy.strategyMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>程序执行的结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">执行策略A</span><br><span class="line">=====================</span><br><span class="line">执行策略B</span><br></pre></td></tr></table></figure>
-
-<h3 id="策略模式的实例"><a href="#策略模式的实例" class="headerlink" title="策略模式的实例"></a>策略模式的实例</h3><p><strong>策略模式在LOL中配置装备的应用</strong></p>
-<p>分析：LOL中有很多装备，不同的装备存在不同的效果，我们以英雄使用装备为例，介绍策略模式的应用。</p>
-<p>首先，定义一个装备效果的接口(EquipmentEffect)，里面包含了一个装备生效的抽象方法 takeEffect()；然后，定义装备（Equipment）类及其两个子类：饮血剑（Bloodthirster）类和无尽之刃（InfinityEdge）类，子类实现了接口中的方法；最后，定义一个装备槽（EquipmentSlot）环境类，它具有设置和选择武器效果的方法：英雄通过装备槽获取装备效果。</p>
-<p>程序代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Hero jax = <span class="keyword">new</span> Hero(<span class="string">&quot;武器大师&quot;</span>, <span class="number">68</span>, <span class="number">10d</span>, <span class="number">20d</span>);</span><br><span class="line">        jax.showAttribute();</span><br><span class="line">        jax.addEquipment(<span class="keyword">new</span> Bloodthirster());</span><br><span class="line">        jax.showAttribute();</span><br><span class="line">        jax.addEquipment(<span class="keyword">new</span> InfinityEdge());</span><br><span class="line">        jax.showAttribute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EquipmentEffect</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">takeEffect</span><span class="params">(Hero hero)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Equipment</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Equipment</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bloodthirster</span> <span class="keyword">extends</span> <span class="title">Equipment</span>  <span class="keyword">implements</span> <span class="title">EquipmentEffect</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> effectAttackPower;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> effectCrit;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> effectLifeSteal;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Bloodthirster</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(<span class="string">&quot;饮血剑&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">takeEffect</span><span class="params">(Hero hero)</span> </span>&#123;</span><br><span class="line">        effectAttackPower = <span class="number">55</span>;</span><br><span class="line">        hero.setAttackPower(hero.getAttackPower() + effectAttackPower);</span><br><span class="line">        effectCrit = <span class="number">20</span>;</span><br><span class="line">        hero.setCrit(hero.getCrit() + effectCrit);</span><br><span class="line">        effectLifeSteal = <span class="number">20</span>;</span><br><span class="line">        hero.setLifeSteal(hero.getLifeSteal() + effectLifeSteal);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InfinityEdge</span> <span class="keyword">extends</span> <span class="title">Equipment</span> <span class="keyword">implements</span> <span class="title">EquipmentEffect</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> effectAttackPower;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> effectCrit;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">InfinityEdge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(<span class="string">&quot;无尽之刃&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">takeEffect</span><span class="params">(Hero hero)</span> </span>&#123;</span><br><span class="line">        effectAttackPower = <span class="number">70</span>;</span><br><span class="line">        hero.setAttackPower(hero.getAttackPower() + effectAttackPower);</span><br><span class="line">        <span class="keyword">double</span> crit = hero.getCrit();</span><br><span class="line">        <span class="keyword">if</span>(crit &gt; <span class="number">60</span>) &#123;</span><br><span class="line">            effectCrit = <span class="number">35</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            effectCrit = <span class="number">20</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        hero.setCrit(hero.getCrit() + effectCrit);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hero</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> attackPower;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> lifeSteal;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> crit;</span><br><span class="line">    <span class="keyword">private</span> EquipmentSlot equipmentSlot = <span class="keyword">new</span> EquipmentSlot();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Hero</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Hero</span><span class="params">(String name, <span class="keyword">int</span> attackPower, <span class="keyword">double</span> lifeSteal, <span class="keyword">double</span> crit)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.attackPower = attackPower;</span><br><span class="line">        <span class="keyword">this</span>.lifeSteal = lifeSteal;</span><br><span class="line">        <span class="keyword">this</span>.crit = crit;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEquipment</span><span class="params">(Equipment equipment)</span> </span>&#123;</span><br><span class="line">        equipmentSlot.setEquipmentEffect((EquipmentEffect) equipment);</span><br><span class="line">        equipmentSlot.takeEffect(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showAttribute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是&quot;</span> + name + <span class="string">&quot;，我的属性信息如下：&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;攻击力：&quot;</span> + attackPower);</span><br><span class="line">        System.out.println(<span class="string">&quot;暴击：&quot;</span> + crit + <span class="string">&quot;%&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;吸血：&quot;</span> + lifeSteal + <span class="string">&quot;%\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAttackPower</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> attackPower;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAttackPower</span><span class="params">(<span class="keyword">int</span> attackPower)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.attackPower = attackPower;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getCrit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> crit;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCrit</span><span class="params">(<span class="keyword">double</span> crit)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.crit = crit;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getLifeSteal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> lifeSteal;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLifeSteal</span><span class="params">(<span class="keyword">double</span> lifeSteal)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.lifeSteal = lifeSteal;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> EquipmentSlot <span class="title">getEquipmentSlot</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> equipmentSlot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEquipmentSlot</span><span class="params">(EquipmentSlot equipmentSlot)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.equipmentSlot = equipmentSlot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>程序输出结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">我是武器大师，我的属性信息如下：</span><br><span class="line">攻击力：68</span><br><span class="line">暴击：20.0%</span><br><span class="line">吸血：10.0%</span><br><span class="line"></span><br><span class="line">我是武器大师，我的属性信息如下：</span><br><span class="line">攻击力：123</span><br><span class="line">暴击：40.0%</span><br><span class="line">吸血：30.0%</span><br><span class="line"></span><br><span class="line">我是武器大师，我的属性信息如下：</span><br><span class="line">攻击力：193</span><br><span class="line">暴击：60.0%</span><br><span class="line">吸血：30.0%</span><br></pre></td></tr></table></figure>
-
-<p>从上面的例子中我们可以看到，如果要新增武器，只需要新增武器类而无需修改英雄和武器槽类，使得代码更加灵活，然而，每种武器都要有自己的策略，后续可能会产生许多策略类，导致维护困难。</p>
-<h3 id="策略模式的应用场景"><a href="#策略模式的应用场景" class="headerlink" title="策略模式的应用场景"></a>策略模式的应用场景</h3><p>通常在以下几种情况中使用策略模式较多：</p>
-<ol>
-<li>一个系统需要动态地在几种算法中选择一种时</li>
-<li>系统中算法彼此完全独立，且要求对客户隐藏具体算法的实现希捷</li>
-<li>多个类只区别在表现行为不同</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/strategy/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -349,7 +313,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-24 01:47:30" itemprop="dateModified" datetime="2021-08-24T01:47:30+08:00">2021-08-24</time>
+        <time title="修改时间：2021-08-25 00:05:26" itemprop="dateModified" datetime="2021-08-25T00:05:26+08:00">2021-08-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -388,13 +352,14 @@
     <div class="post-body" itemprop="articleBody">
           <h2 id="什么是设计模式？"><a href="#什么是设计模式？" class="headerlink" title="什么是设计模式？"></a>什么是设计模式？</h2><p>设计模式是面对问题的解决方案，是开发人员经过相当长一段时间的试验总结出来的，针对不同形式的问题的最佳实践，设计模式是一种解决问题的方案，而不是解决问题的具体方法。</p>
 <p>设计模式可以类比为独孤九剑，它没有明确的招式，但是针对特定的问题总有最佳的解决方案，比如破剑式、破掌式、破气式等，这实际上就是建立在独孤求败多年经验积累的最佳实践，是武林中的设计模式。</p>
-<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p>虽然说设计模式不是具体的实现方式，但改编不是胡编，设计不是蛇精，设计模式也要遵循一些基本的设计原则：</p>
-<ul>
-<li>多用组合，少用继承</li>
-<li>针对接口编程，不针对实现编程</li>
-<li>软件对扩展开放，对修改关闭</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/design-pattern-introduce/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -507,104 +472,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yujinzheng.com/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yujinzheng">
-      <meta itemprop="description" content="小站杂记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yu's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-11-09 02:12:23" itemprop="dateCreated datePublished" datetime="2018-11-09T02:12:23+08:00">2018-11-09</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2018-12-04 04:22:52" itemprop="dateModified" datetime="2018-12-04T04:22:52+08:00">2018-12-04</time>
-      </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>367</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
 </div>
   </main>
@@ -632,7 +499,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6 分钟</span>
+    <span title="站点阅读时长">5 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
