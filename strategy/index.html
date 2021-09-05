@@ -19,8 +19,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"yujinzheng.com","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="策略模式的定义与特点在现实生活中，我们经常遇到实现目标存在多种策略可供选择的场景，比如出行的时候可以步行、乘公交、乘地铁、自驾等，付款时可以选择现金支付、支付宝支付、微信支付等。 在软件开发中叶经常遇到类似的情况，某种方案的实现可以采用多种算法或策略，我们可以根据实际情况采取不同的算法或策略来完成功能。如果我们使用条件语句来选择策略或算法，那么每当策略变更时，我们可能都会面临原代码的修改，不利于代">
+<link rel="stylesheet" href="/js/prism/prism.css">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yujinzheng.com","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script><meta name="description" content="策略模式的定义与特点在现实生活中，我们经常遇到实现目标存在多种策略可供选择的场景，比如出行的时候可以步行、乘公交、乘地铁、自驾等，付款时可以选择现金支付、支付宝支付、微信支付等。 在软件开发中叶经常遇到类似的情况，某种方案的实现可以采用多种算法或策略，我们可以根据实际情况采取不同的算法或策略来完成功能。如果我们使用条件语句来选择策略或算法，那么每当策略变更时，我们可能都会面临原代码的修改，不利于代">
 <meta property="og:type" content="article">
 <meta property="og:title" content="策略模式">
 <meta property="og:url" content="http://yujinzheng.com/strategy/index.html">
@@ -136,7 +137,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -237,14 +238,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.9k</span>
+      <span>3.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -287,20 +288,117 @@
 </div>
 
 <h3 id="策略模式的实现"><a href="#策略模式的实现" class="headerlink" title="策略模式的实现"></a>策略模式的实现</h3><p>策略模式实现的代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrategyPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Context context = <span class="keyword">new</span> Context();</span><br><span class="line">        Strategy concreteStrategyA = <span class="keyword">new</span> ConcreteStrategyA();</span><br><span class="line">        Strategy concreteStrategyB = <span class="keyword">new</span> ConcreteStrategyB();</span><br><span class="line">        context.setStrategy(concreteStrategyA);</span><br><span class="line">        context.strategyMethod();</span><br><span class="line">        System.out.println(<span class="string">&quot;=====================&quot;</span>);</span><br><span class="line">        context.setStrategy(concreteStrategyB);</span><br><span class="line">        context.strategyMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">strategyMethod</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyA</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">strategyMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行策略A&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyB</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">strategyMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行策略B&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span> </span>&#123;</span><br><span class="line">    Strategy strategy;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStrategy</span><span class="params">(Strategy strategy)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.strategy = strategy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Strategy <span class="title">getStrategy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> strategy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">strategyMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        strategy.strategyMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="line-numbers language-java">public class StrategyPattern &#123;
+    public static void main(String[] args) &#123;
+        Context context = new Context();
+        Strategy concreteStrategyA = new ConcreteStrategyA();
+        Strategy concreteStrategyB = new ConcreteStrategyB();
+        context.setStrategy(concreteStrategyA);
+        context.strategyMethod();
+        System.out.println(&quot;=====================&quot;);
+        context.setStrategy(concreteStrategyB);
+        context.strategyMethod();
+    &#125;
+&#125;
 
+public interface Strategy &#123;
+    public void strategyMethod();
+&#125;
+
+public class ConcreteStrategyA implements Strategy&#123;
+    public void strategyMethod() &#123;
+        System.out.println(&quot;执行策略A&quot;);
+    &#125;
+&#125;
+
+public class ConcreteStrategyB implements Strategy&#123;
+    public void strategyMethod() &#123;
+        System.out.println(&quot;执行策略B&quot;);
+    &#125;
+&#125;
+
+public class Context &#123;
+    Strategy strategy;
+
+    public void setStrategy(Strategy strategy) &#123;
+        this.strategy = strategy;
+    &#125;
+
+    public Strategy getStrategy() &#123;
+        return strategy;
+    &#125;
+
+    public void strategyMethod() &#123;
+        strategy.strategyMethod();
+    &#125;
+&#125;
+</code></pre>
 <p>程序执行的结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">执行策略A</span><br><span class="line">=====================</span><br><span class="line">执行策略B</span><br></pre></td></tr></table></figure>
-
+<pre><code class="line-numbers language-text">执行策略A
+=====================
+执行策略B
+</code></pre>
 <h3 id="策略模式的实例"><a href="#策略模式的实例" class="headerlink" title="策略模式的实例"></a>策略模式的实例</h3><p><strong>丁一的奇妙冒险</strong></p>
 <p>背景：丁一是一个平平无奇的程序员，有一天他在加班时，鼠标神奇地被雷劈了，从此他就拥有了使用鼠标穿越的能力，当他点击鼠标左键时，他就会魂穿，当他点击鼠标右键时，他就会身穿，当他点击滚轮时，他就半身穿（比如穿越成半人马），当然，不排除还有更多的穿越模式，只是丁一暂时还没发现而已，作为平平无奇的程序猿，丁一想到了用策略模式来描述自己的穿越能力。</p>
 <p>首先，定义一个穿越策略的接口（TraversalStrategy），里面包含了一个穿越方案的抽象方法startTraversal()；然后，定义一系列穿越策略，比如身穿（BodyTraversal）类、魂穿（SoulTraversal）类、半身穿（HalfBodyTraversal）类；最后，定义环境上下文，在这里就是丁一的鼠标（Mouse），丁一通过鼠标来触发穿越策略。</p>
 <p>程序代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Mouse mouse = <span class="keyword">new</span> Mouse();</span><br><span class="line">        System.out.println(<span class="string">&quot;我是丁一，我今天准备使用鼠标进行穿越&quot;</span>);</span><br><span class="line">        mouse.setTraversalStrategy(<span class="keyword">new</span> BodyTraversal());</span><br><span class="line">        mouse.startTraversal();</span><br><span class="line">        mouse.setTraversalStrategy(<span class="keyword">new</span> SoulTraversal());</span><br><span class="line">        mouse.startTraversal();</span><br><span class="line">        mouse.setTraversalStrategy(<span class="keyword">new</span> HalfBodyTraversal());</span><br><span class="line">        mouse.startTraversal();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TraversalStrategy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startTraversal</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BodyTraversal</span> <span class="keyword">implements</span> <span class="title">TraversalStrategy</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startTraversal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;触发了身穿，整个人都穿越啦&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HalfBodyTraversal</span> <span class="keyword">implements</span> <span class="title">TraversalStrategy</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startTraversal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;触发了半身穿，只有一半的身体穿越啦&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SoulTraversal</span> <span class="keyword">implements</span> <span class="title">TraversalStrategy</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startTraversal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;触发了魂穿，只有灵魂穿越啦&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mouse</span> </span>&#123;</span><br><span class="line">    TraversalStrategy traversalStrategy;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startTraversal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        traversalStrategy.startTraversal();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTraversalStrategy</span><span class="params">(TraversalStrategy traversalStrategy)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.traversalStrategy = traversalStrategy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TraversalStrategy <span class="title">getTraversalStrategy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> traversalStrategy;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="line-numbers language-java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        Mouse mouse = new Mouse();
+        System.out.println(&quot;我是丁一，我今天准备使用鼠标进行穿越&quot;);
+        mouse.setTraversalStrategy(new BodyTraversal());
+        mouse.startTraversal();
+        mouse.setTraversalStrategy(new SoulTraversal());
+        mouse.startTraversal();
+        mouse.setTraversalStrategy(new HalfBodyTraversal());
+        mouse.startTraversal();
+    &#125;
+&#125;
 
+public interface TraversalStrategy &#123;
+    public void startTraversal();
+&#125;
+
+public class BodyTraversal implements TraversalStrategy&#123;
+    public void startTraversal() &#123;
+        System.out.println(&quot;触发了身穿，整个人都穿越啦&quot;);
+    &#125;
+&#125;
+
+public class HalfBodyTraversal implements TraversalStrategy&#123;
+    public void startTraversal() &#123;
+        System.out.println(&quot;触发了半身穿，只有一半的身体穿越啦&quot;);
+    &#125;
+&#125;
+
+public class SoulTraversal implements TraversalStrategy&#123;
+    public void startTraversal() &#123;
+        System.out.println(&quot;触发了魂穿，只有灵魂穿越啦&quot;);
+    &#125;
+&#125;
+
+public class Mouse &#123;
+    TraversalStrategy traversalStrategy;
+
+    public void startTraversal() &#123;
+        traversalStrategy.startTraversal();
+    &#125;
+
+    public void setTraversalStrategy(TraversalStrategy traversalStrategy) &#123;
+        this.traversalStrategy = traversalStrategy;
+    &#125;
+
+    public TraversalStrategy getTraversalStrategy() &#123;
+        return traversalStrategy;
+    &#125;
+&#125;
+</code></pre>
 <p>程序输出结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">我是丁一，我今天准备使用鼠标进行穿越</span><br><span class="line">触发了身穿，整个人都穿越啦</span><br><span class="line">触发了魂穿，只有灵魂穿越啦</span><br><span class="line">触发了半身穿，只有一半的身体穿越啦</span><br></pre></td></tr></table></figure>
-
+<pre><code class="line-numbers language-text">我是丁一，我今天准备使用鼠标进行穿越
+触发了身穿，整个人都穿越啦
+触发了魂穿，只有灵魂穿越啦
+触发了半身穿，只有一半的身体穿越啦
+</code></pre>
 <p>从上面的例子中我们可以看到，如果丁一发现了新的穿越方式，那么就只需要新增穿越策略，而无需对他的鼠标进行修改，使得代码更加灵活。然而，如果丁一脑洞过大，发现了很多的穿越模式，那么不仅每种穿越模式需要一个策略，他本人也必须了解所有的穿越模式，这样会导致维护变得困难。</p>
 <h3 id="策略模式的应用场景"><a href="#策略模式的应用场景" class="headerlink" title="策略模式的应用场景"></a>策略模式的应用场景</h3><p>通常在以下几种情况中使用策略模式较多：</p>
 <ol>
@@ -364,17 +462,20 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">8k</span>
+    <span title="站点总字数">14k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7 分钟</span>
+    <span title="站点阅读时长">13 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div><script color="0,0,0" opacity="0.75" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+  </div>
+
+<script src="/js/prism/clipboard.js"></script>
+<script src="/js/prism/prism.js" async></script><script color="0,0,0" opacity="0.75" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
     </div>
   </footer>
