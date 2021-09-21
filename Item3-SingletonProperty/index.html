@@ -21,28 +21,29 @@
 
 <link rel="stylesheet" href="/js/prism/prism.css">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"yujinzheng.com","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script><meta name="description" content="什么是设计模式？设计模式是面对问题的解决方案，是开发人员经过相当长一段时间的试验总结出来的，针对不同形式的问题的最佳实践，设计模式是一种解决问题的方案，而不是解决问题的具体方法。 设计模式可以类比为独孤九剑，它没有明确的招式，但是针对特定的问题总有最佳的解决方案，比如破剑式、破掌式、破气式等，这实际上就是建立在独孤求败多年经验积累的最佳实践，是武林中的设计模式。">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yujinzheng.com","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script><meta name="description" content="单例是一个仅实例化一次的类。单例对象通常表示无状态对象，如函数或一个本质上唯一的系统组件。让一个类成为单例会使测试它的客户端变得困难，因为除非实现一个作为它（该单例）类型的接口，否则不可能用一个模拟实现替代单例。 有两种常见的方法来实现单例。二者都基于保持构造方法私有和导出公共静态成员以提供对唯一实例的访问。在第一种方法中，成员是final修饰的属性： &#x2F;&#x2F; 使用public final修饰属性的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式介绍">
-<meta property="og:url" content="http://yujinzheng.com/design-pattern-introduce/index.html">
+<meta property="og:title" content="使用私有构造方法或枚举类实现Singleton属性">
+<meta property="og:url" content="http://yujinzheng.com/Item3-SingletonProperty/index.html">
 <meta property="og:site_name" content="Yu&#39;s Blog">
-<meta property="og:description" content="什么是设计模式？设计模式是面对问题的解决方案，是开发人员经过相当长一段时间的试验总结出来的，针对不同形式的问题的最佳实践，设计模式是一种解决问题的方案，而不是解决问题的具体方法。 设计模式可以类比为独孤九剑，它没有明确的招式，但是针对特定的问题总有最佳的解决方案，比如破剑式、破掌式、破气式等，这实际上就是建立在独孤求败多年经验积累的最佳实践，是武林中的设计模式。">
+<meta property="og:description" content="单例是一个仅实例化一次的类。单例对象通常表示无状态对象，如函数或一个本质上唯一的系统组件。让一个类成为单例会使测试它的客户端变得困难，因为除非实现一个作为它（该单例）类型的接口，否则不可能用一个模拟实现替代单例。 有两种常见的方法来实现单例。二者都基于保持构造方法私有和导出公共静态成员以提供对唯一实例的访问。在第一种方法中，成员是final修饰的属性： &#x2F;&#x2F; 使用public final修饰属性的">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-22T19:35:29.000Z">
-<meta property="article:modified_time" content="2021-08-24T16:05:26.919Z">
+<meta property="article:published_time" content="2021-09-21T15:18:00.000Z">
+<meta property="article:modified_time" content="2021-09-21T15:46:40.051Z">
 <meta property="article:author" content="Yujinzheng">
-<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="创建和销毁对象">
+<meta property="article:tag" content="Effective Java">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://yujinzheng.com/design-pattern-introduce/">
+<link rel="canonical" href="http://yujinzheng.com/Item3-SingletonProperty/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yujinzheng.com/design-pattern-introduce/","path":"design-pattern-introduce/","title":"设计模式介绍"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yujinzheng.com/Item3-SingletonProperty/","path":"Item3-SingletonProperty/","title":"使用私有构造方法或枚举类实现Singleton属性"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>设计模式介绍 | Yu's Blog</title>
+<title>使用私有构造方法或枚举类实现Singleton属性 | Yu's Blog</title>
   
 
 
@@ -107,7 +108,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -120,7 +121,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是设计模式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="nav-number">2.</span> <span class="nav-text">设计原则</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -185,7 +185,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yujinzheng.com/design-pattern-introduce/">
+    <link itemprop="mainEntityOfPage" href="http://yujinzheng.com/Item3-SingletonProperty/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          设计模式介绍
+          使用私有构造方法或枚举类实现Singleton属性
         </h1>
 
         <div class="post-meta-container">
@@ -208,16 +208,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-08-23 03:35:29" itemprop="dateCreated datePublished" datetime="2021-08-23T03:35:29+08:00">2021-08-23</time>
+      <time title="创建时间：2021-09-21 23:18:00 / 修改时间：23:46:40" itemprop="dateCreated datePublished" datetime="2021-09-21T23:18:00+08:00">2021-09-21</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-25 00:05:26" itemprop="dateModified" datetime="2021-08-25T00:05:26+08:00">2021-08-25</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -235,14 +229,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>271</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -253,16 +247,45 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="什么是设计模式？"><a href="#什么是设计模式？" class="headerlink" title="什么是设计模式？"></a>什么是设计模式？</h2><p>设计模式是面对问题的解决方案，是开发人员经过相当长一段时间的试验总结出来的，针对不同形式的问题的最佳实践，设计模式是一种解决问题的方案，而不是解决问题的具体方法。</p>
-<p>设计模式可以类比为独孤九剑，它没有明确的招式，但是针对特定的问题总有最佳的解决方案，比如破剑式、破掌式、破气式等，这实际上就是建立在独孤求败多年经验积累的最佳实践，是武林中的设计模式。</p>
+        <p>单例是一个仅实例化一次的类。单例对象通常表示无状态对象，如函数或一个本质上唯一的系统组件。让一个类成为单例会使测试它的客户端变得困难，因为除非实现一个作为它（该单例）类型的接口，否则不可能用一个模拟实现替代单例。</p>
+<p>有两种常见的方法来实现单例。二者都基于保持构造方法私有和导出公共静态成员以提供对唯一实例的访问。在第一种方法中，成员是<code>final</code>修饰的属性：</p>
+<pre><code class="line-numbers language-java">// 使用public final修饰属性的单例
+public class Elvis &#123;
+    public static final Elvis INSTANCE = new Elvis();
+    private Elvis() &#123; ... &#125;
+    public void leaveTheBuilding() &#123; ... &#125;
+&#125;
+</code></pre>
 <span id="more"></span> 
 
-<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p>虽然说设计模式不是具体的实现方式，但改编不是胡编，设计不是蛇精，设计模式也要遵循一些基本的设计原则：</p>
-<ul>
-<li>多用组合，少用继承</li>
-<li>针对接口编程，不针对实现编程</li>
-<li>软件对扩展开放，对修改关闭</li>
-</ul>
+<p>私有构造方法只调用一次，用于初始化公共静态属性<code>final Elvis INSTANCE</code>。缺少一个公共的或受保护的构造方法，保证了全局的唯一性：一旦Elvis类被初始化，一个Elvis的实例就会存在，客户端所做的任何事情都不能改变这一点，但需要注意的是：特权客户端可以使用<code>AccessibleObject.setAccessible</code>方法，以反射的方式调用私有构造方法。如果需要防御此攻击，请修改构造函数，使其在请求创建第二个实例时抛出异常。</p>
+<p>在第一种实现单例的方法中，公共成员是一个静态的工厂方法：</p>
+<pre><code class="line-numbers language-java">// 使用静态工厂方法的单例
+public class Elvis &#123;
+    private static final Elvis INSTANCE = new Elvis();
+    private Elvis() &#123; ... &#125;
+    public static Elvis getInstance() &#123; return INSTANCE; &#125;
+    public void leaveTheBuilding() &#123; ... &#125;
+&#125;
+</code></pre>
+<p>所有对<code>Elvis.getInstance</code>的调用都返回相同的对象引用，并且不会创建其他的Elvs实例。</p>
+<p>公共属性方法的主要优点是API明确表示该类是一个单例：公共静态属性是final的，所以它总是包含相同的对象引用。第二个好处则是它更加简单。</p>
+<p>静态工厂方法的优势之一在于，它提供了灵活性：在不改变其API的情况下，我们可以改变该类是否为单例的想法。工厂方法返回该类的唯一实例，但是，它很容易被修改，比如，改为每个调用该方法的线程返回一个唯一的实例。第二个优势是，如果你的应用程序需要，可以编写一个泛型单例工厂（generic singleton factory）。使用静态工厂方法的最后一个优势是，可以通过方法引用（method reference）作为提供者，例如<code>Elvis::instance</code>等同于<code>Supplier&lt;Elvis&gt;</code>。除非满足以上任意一种优势，否则还是有限考虑公有域方法。</p>
+<p>为了将上述方法中实现的单例类编程可序列化的，仅仅将<code>implements Serializable</code>添加到声明中是不够的。为了保证单例模式不被破坏，必须声明所有的实例字段为<code>transient</code>，并提供一个<code>readResolve</code>方法。否则，每当序列化的是咧被反序列化时，就会创建一个新的实例。为了防止这种情况发生，可以将如下的<code>readResolve</code>方法添加到类中：</p>
+<pre><code class="line-numbers language-java">// readResolve方法用于保证单例属性
+private Object readResolve() &#123;
+    // 返回一个真正的Elvis类并让GC处理不必要的Elvis
+    return INSTANCE;
+&#125;
+</code></pre>
+<p>实现一个单例的第三种方法是声明单一元素的枚举类</p>
+<pre><code class="line-numbers language-java">// 枚举单例 —— 首选方法
+public enum Elvis &#123;
+    INSTANCE;
+    public void leaveTheBuilding() &#123; ... &#125;
+&#125;
+</code></pre>
+<p>这种方式类似于公共属性方法，但是更加简洁，并且无偿提供了序列化机制，即使是在复杂的序列化或反射攻击的情况下，它也能为防止多个实例化提供坚强的保证。这种使用方法可能有点不自然，但是<strong>单一元素枚举类型是实现单例的最佳方式</strong>。注意，如果单例必须继承<code>Enum</code>以外的父类（尽管还能声明一个<code>Enum</code>来实现接口），那么就不能使用这种方法。</p>
 
     </div>
 
@@ -272,18 +295,19 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"># 设计模式</a>
+              <a href="/tags/%E5%88%9B%E5%BB%BA%E5%92%8C%E9%94%80%E6%AF%81%E5%AF%B9%E8%B1%A1/" rel="tag"># 创建和销毁对象</a>
+              <a href="/tags/Effective-Java/" rel="tag"># Effective Java</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/Item2-ConsiderBuilder/" rel="prev" title="当构造方法参数过多时使用Builder模式">
+                  <i class="fa fa-chevron-left"></i> 当构造方法参数过多时使用Builder模式
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/strategy/" rel="next" title="策略模式">
-                  策略模式 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
