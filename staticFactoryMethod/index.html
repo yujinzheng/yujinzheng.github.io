@@ -135,7 +135,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -146,7 +146,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -255,12 +255,12 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="什么是静态工厂方法"><a href="#什么是静态工厂方法" class="headerlink" title="什么是静态工厂方法"></a>什么是静态工厂方法</h2><p>在Java中，获取一个类实例最常用的方法就是使用<code>new</code>关键字，通过构造函数来实现对象的创建，比如这样：</p>
-<pre><code class="line-numbers language-java">List&lt;String&gt; myList = new ArrayList&lt;&gt;();
+<pre><code class="lang-java">List&lt;String&gt; myList = new ArrayList&lt;&gt;();
 
 JSONObject jsonObject = new JSONObject();
 </code></pre>
 <p>但是在实际开发中，我们经常能够见到另一种获取类实例的方法：</p>
-<pre><code class="line-numbers language-java">String testStr = String.valueOf(123);
+<pre><code class="lang-java">String testStr = String.valueOf(123);
 
 Integer integer = Integer.getInteger(&quot;123&quot;);
 
@@ -268,12 +268,11 @@ Calendar calendar = Calendar.getInstance();
 </code></pre>
 <p>如上面这种不使用<code>new</code>，而是用一个静态方法对外提供自身实例的方法，就是<code>静态工厂方法(Static Factory Method)</code>。</p>
 <span id="more"></span> 
-
 <h2 id="为什么使用静态工厂方法"><a href="#为什么使用静态工厂方法" class="headerlink" title="为什么使用静态工厂方法"></a>为什么使用静态工厂方法</h2><p>在《Effective Java》这本书中，第一条就是“考虑使用静态工厂方法代替构造器”。在书中，作者给出了使用静态工厂方法的几个优势：</p>
 <p><strong>1. 静态工厂方法与参数构造器不同的是，它们有名称</strong></p>
 <p>由于语言的特性，Java的构造函数跟类名是一样的，在有多个重载的构造函数的情况下，构造函数很难准确地描述返回值或创建的对象的性质，尤其是当参数类型、参数数目又比较类似时，更容易出错。</p>
 <p>如下面的代码：</p>
-<pre><code class="line-numbers language-java">Date date0 = new Date();
+<pre><code class="lang-java">Date date0 = new Date();
 Date date1 = new Date(1L);
 Date date2 = new Date(&quot;1&quot;);
 Date date3 = new Date(1,2,3);
@@ -285,7 +284,7 @@ Date date5 = new Date(1,2,3,4,5,6);
 <p>有的时候，外部调用者只需要拿到一个实例，二不关心拿到的是否是一个新的实例；又或者我们只想对外提供一个单例的时候，静态工厂方法能够很好地满足我们的诉求。</p>
 <p><strong>3. 静态工厂方法可以返回原返回类型的任何子类型对象</strong></p>
 <p>构造函数只能返回确切的自身类型，而静态工厂方法则能够更加灵活，可以根据需要返回任何它的子类型实例。</p>
-<pre><code class="line-numbers language-java">class Clothes &#123;
+<pre><code class="lang-java">class Clothes &#123;
     public static Clothes getInstanceByType(String type) &#123;
         switch (type) &#123;
             case &quot;shirt&quot;:
@@ -311,15 +310,15 @@ class Skirt extends Clothes &#123;
 </code></pre>
 <p><strong>4. 在创建参数化类型实例的时候，能够是代码变得更加简洁</strong></p>
 <p>这一条主要是针对参数化类型的声明而说的，比如在Java7之前，构造参数化类型需要重复书写两次泛型参数：</p>
-<pre><code class="line-numbers language-java">Map&lt;String, List&lt;String&gt;&gt; m = new HashMap&lt;String, List&lt;String&gt;&gt;();
+<pre><code class="lang-java">Map&lt;String, List&lt;String&gt;&gt; m = new HashMap&lt;String, List&lt;String&gt;&gt;();
 </code></pre>
 <p>不过从Java7开始，这种方式已经被优化了：对一个一直类型的变量进行赋值时，由于类型推导（type inference）的原因，编译器可以帮你找到类型参数：</p>
-<pre><code class="line-numbers language-java">Map&lt;String, List&lt;String&gt;&gt; m = new HashMap&lt;&gt;();
+<pre><code class="lang-java">Map&lt;String, List&lt;String&gt;&gt; m = new HashMap&lt;&gt;();
 </code></pre>
 <p>除了《Effective Java》中给出的几条理由，我们还能够找到静态工厂方法带来的更多好处：</p>
 <p><strong>5. 可以减少对外暴露的属性</strong></p>
 <p>例如在初始化实例的时候，我们希望直接给实例配置某些固定属性，这个时候，就可以通过静态工厂方法来实现了：</p>
-<pre><code class="line-numbers language-java">class Phone &#123;
+<pre><code class="lang-java">class Phone &#123;
     public static final String  BRANDS_APPLE = &quot;Apple&quot;;
 
     public static final String  BRANDS_HUAWEI = &quot;Huawei&quot;;
@@ -354,7 +353,7 @@ class Skirt extends Clothes &#123;
 <p>通过将构造函数声明为<code>private</code>，防止被外部调用，调用方在创建手机时，只能通过静态工厂方法来创建，这样，调用方无须制定brands值，能够减少对外暴露的属性。</p>
 <p><strong>6. 使用静态工厂方法可以将一系列行为封装起来，有利于代码管理</strong></p>
 <p>比如在编写测试数据时，可以用一个专用的静态工厂方法来获取测试实例，一旦需要正式上线，就可以在类里面修改或删除这个方法，那么所有的调用就都能同步到变化，减少测试代码上线的可能性。</p>
-<pre><code class="line-numbers language-java">class Person &#123;
+<pre><code class="lang-java">class Person &#123;
     private String name;
     private int age;
     private int height;
@@ -381,7 +380,7 @@ Person tester = Person.newTestInstance();
 <p>由于静态工厂方法本质上就是静态方法，因此在API文档中不会被明确标识出来，面对这种情况，我们只能尽量使用约定成俗或标准的命名习惯来弥补这一个劣势。</p>
 <p>下面是静态工厂方法的一些惯用名称：</p>
 <ul>
-<li> valueOf</li>
+<li>valueOf</li>
 <li>of</li>
 <li>getInstance</li>
 <li>newInstance</li>
@@ -445,13 +444,13 @@ Person tester = Person.newTestInstance();
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">16k</span>
+    <span title="站点总字数">20k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">15 分钟</span>
+    <span title="站点阅读时长">18 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
@@ -475,6 +474,12 @@ Person tester = Person.newTestInstance();
   
 
 
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 

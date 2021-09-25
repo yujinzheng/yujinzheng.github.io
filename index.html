@@ -130,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -141,7 +141,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -171,6 +171,131 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yujinzheng.com/float/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yujinzheng">
+      <meta itemprop="description" content="小站杂记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yu's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/float/" class="post-title-link" itemprop="url">浮点数探秘</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-25 21:06:03" itemprop="dateCreated datePublished" datetime="2021-09-25T21:06:03+08:00">2021-09-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-09-26 05:25:15" itemprop="dateModified" datetime="2021-09-26T05:25:15+08:00">2021-09-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%A3%E7%A0%81%E6%B2%89%E6%80%9D%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">代码沉思录</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>考虑如下代码：</p>
+<pre><code class="lang-java">public static void main(String[] args) &#123;
+    floatPrintTest(10000000, 10001000, 10);
+    floatPrintTest(100000000, 100001000, 10);
+
+    // 程序会陷入死循环
+    // floatPrintTest(1000000000, 1000001000, 10);
+&#125;
+
+public static void floatPrintTest(float start, float stop, float step) &#123;
+    int count = 0;
+    float distance = stop - start;
+    while (start &lt; stop) &#123;
+        count++;
+        start = start + step;
+    &#125;
+    System.out.println(distance + &quot;除以&quot; + step + &quot;等于&quot; + count);
+&#125;
+</code></pre>
+<p>程序的输出如下：</p>
+<pre><code class="lang-text">1000.0除以10.0等于100
+1000.0除以10.0等于125
+</code></pre>
+<p>同样的步进精度，同样需要步进1000个数，为什么当浮点数的位数发生变化后，输出的结果却迥然不同呢？这个就涉及到了float的值到底是怎么表达的问题了，也就是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/IEEE_754">IEEE 754二进制浮点数算术标准</a>，接下来我们就仔细探究一下float背后隐含的秘密。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/float/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -244,7 +369,7 @@
     <div class="post-body" itemprop="articleBody">
           <p>单例是一个仅实例化一次的类。单例对象通常表示无状态对象，如函数或一个本质上唯一的系统组件。让一个类成为单例会使测试它的客户端变得困难，因为除非实现一个作为它（该单例）类型的接口，否则不可能用一个模拟实现替代单例。</p>
 <p>有两种常见的方法来实现单例。二者都基于保持构造方法私有和导出公共静态成员以提供对唯一实例的访问。在第一种方法中，成员是<code>final</code>修饰的属性：</p>
-<pre><code class="line-numbers language-java">// 使用public final修饰属性的单例
+<pre><code class="lang-java">// 使用public final修饰属性的单例
 public class Elvis &#123;
     public static final Elvis INSTANCE = new Elvis();
     private Elvis() &#123; ... &#125;
@@ -459,12 +584,12 @@ public class Elvis &#123;
     
     <div class="post-body" itemprop="articleBody">
           <h2 id="什么是静态工厂方法"><a href="#什么是静态工厂方法" class="headerlink" title="什么是静态工厂方法"></a>什么是静态工厂方法</h2><p>在Java中，获取一个类实例最常用的方法就是使用<code>new</code>关键字，通过构造函数来实现对象的创建，比如这样：</p>
-<pre><code class="line-numbers language-java">List&lt;String&gt; myList = new ArrayList&lt;&gt;();
+<pre><code class="lang-java">List&lt;String&gt; myList = new ArrayList&lt;&gt;();
 
 JSONObject jsonObject = new JSONObject();
 </code></pre>
 <p>但是在实际开发中，我们经常能够见到另一种获取类实例的方法：</p>
-<pre><code class="line-numbers language-java">String testStr = String.valueOf(123);
+<pre><code class="lang-java">String testStr = String.valueOf(123);
 
 Integer integer = Integer.getInteger(&quot;123&quot;);
 
@@ -723,13 +848,13 @@ Calendar calendar = Calendar.getInstance();
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">16k</span>
+    <span title="站点总字数">20k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">15 分钟</span>
+    <span title="站点阅读时长">18 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
@@ -753,6 +878,12 @@ Calendar calendar = Calendar.getInstance();
   
 
 
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 

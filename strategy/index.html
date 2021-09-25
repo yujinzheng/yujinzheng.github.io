@@ -137,7 +137,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -148,7 +148,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -259,7 +259,6 @@
         <h2 id="策略模式的定义与特点"><a href="#策略模式的定义与特点" class="headerlink" title="策略模式的定义与特点"></a>策略模式的定义与特点</h2><p>在现实生活中，我们经常遇到实现目标存在多种策略可供选择的场景，比如出行的时候可以步行、乘公交、乘地铁、自驾等，付款时可以选择现金支付、支付宝支付、微信支付等。</p>
 <p>在软件开发中叶经常遇到类似的情况，某种方案的实现可以采用多种算法或策略，我们可以根据实际情况采取不同的算法或策略来完成功能。如果我们使用条件语句来选择策略或算法，那么每当策略变更时，我们可能都会面临原代码的修改，不利于代码的维护，也违背了“软件对扩展开放，对修改关闭”的设计原则，因此，我们引入了<strong>策略模式</strong>。</p>
 <span id="more"></span> 
-
 <p><strong>定义</strong>：策略模式定义了一系列算法，并将每个算法封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。</p>
 <p>策略模式的主要优点如下：</p>
 <ol>
@@ -288,7 +287,7 @@
 </div>
 
 <h3 id="策略模式的实现"><a href="#策略模式的实现" class="headerlink" title="策略模式的实现"></a>策略模式的实现</h3><p>策略模式实现的代码如下：</p>
-<pre><code class="line-numbers language-java">public class StrategyPattern &#123;
+<pre><code class="lang-java">public class StrategyPattern &#123;
     public static void main(String[] args) &#123;
         Context context = new Context();
         Strategy concreteStrategyA = new ConcreteStrategyA();
@@ -334,7 +333,7 @@ public class Context &#123;
 &#125;
 </code></pre>
 <p>程序执行的结果如下：</p>
-<pre><code class="line-numbers language-text">执行策略A
+<pre><code class="lang-text">执行策略A
 =====================
 执行策略B
 </code></pre>
@@ -342,7 +341,7 @@ public class Context &#123;
 <p>背景：丁一是一个平平无奇的程序员，有一天他在加班时，鼠标神奇地被雷劈了，从此他就拥有了使用鼠标穿越的能力，当他点击鼠标左键时，他就会魂穿，当他点击鼠标右键时，他就会身穿，当他点击滚轮时，他就半身穿（比如穿越成半人马），当然，不排除还有更多的穿越模式，只是丁一暂时还没发现而已，作为平平无奇的程序猿，丁一想到了用策略模式来描述自己的穿越能力。</p>
 <p>首先，定义一个穿越策略的接口（TraversalStrategy），里面包含了一个穿越方案的抽象方法startTraversal()；然后，定义一系列穿越策略，比如身穿（BodyTraversal）类、魂穿（SoulTraversal）类、半身穿（HalfBodyTraversal）类；最后，定义环境上下文，在这里就是丁一的鼠标（Mouse），丁一通过鼠标来触发穿越策略。</p>
 <p>程序代码如下：</p>
-<pre><code class="line-numbers language-java">public class Main &#123;
+<pre><code class="lang-java">public class Main &#123;
     public static void main(String[] args) &#123;
         Mouse mouse = new Mouse();
         System.out.println(&quot;我是丁一，我今天准备使用鼠标进行穿越&quot;);
@@ -394,7 +393,7 @@ public class Mouse &#123;
 &#125;
 </code></pre>
 <p>程序输出结果如下：</p>
-<pre><code class="line-numbers language-text">我是丁一，我今天准备使用鼠标进行穿越
+<pre><code class="lang-text">我是丁一，我今天准备使用鼠标进行穿越
 触发了身穿，整个人都穿越啦
 触发了魂穿，只有灵魂穿越啦
 触发了半身穿，只有一半的身体穿越啦
@@ -462,13 +461,13 @@ public class Mouse &#123;
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">16k</span>
+    <span title="站点总字数">20k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">15 分钟</span>
+    <span title="站点阅读时长">18 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
@@ -492,6 +491,12 @@ public class Mouse &#123;
   
 
 
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 

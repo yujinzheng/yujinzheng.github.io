@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<link rel="stylesheet" href="/js/prism/prism.css">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yujinzheng.com","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script><meta name="description" content="引子考虑如下代码： public static void main(String[] args) &amp;#123;     floatPrintTest(10000000, 10001000, 10);     floatPrintTest(100000000, 100001000, 10);      &#x2F;&#x2F; 程序会陷入死循环     &#x2F;&#x2F; floatPrintTest(1000000000, 100">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浮点数探秘">
+<meta property="og:url" content="http://yujinzheng.com/float/index.html">
+<meta property="og:site_name" content="Yu&#39;s Blog">
+<meta property="og:description" content="引子考虑如下代码： public static void main(String[] args) &amp;#123;     floatPrintTest(10000000, 10001000, 10);     floatPrintTest(100000000, 100001000, 10);      &#x2F;&#x2F; 程序会陷入死循环     &#x2F;&#x2F; floatPrintTest(1000000000, 100">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-25T13:06:03.000Z">
+<meta property="article:modified_time" content="2021-09-25T21:25:15.661Z">
+<meta property="article:author" content="Yujinzheng">
+<meta property="article:tag" content="码海拾贝">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yujinzheng.com/float/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yujinzheng.com/float/","path":"float/","title":"浮点数探秘"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>浮点数探秘 | Yu's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Yu's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E5%89%96%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">浮点数剖析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">3.</span> <span class="nav-text">单精度浮点数的计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E7%B2%BE%E7%A1%AE%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">单精度浮点数的精确性</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yujinzheng</p>
+  <div class="site-description" itemprop="description">小站杂记</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yujinzheng.com/float/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yujinzheng">
+      <meta itemprop="description" content="小站杂记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          浮点数探秘
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-25 21:06:03" itemprop="dateCreated datePublished" datetime="2021-09-25T21:06:03+08:00">2021-09-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-09-26 05:25:15" itemprop="dateModified" datetime="2021-09-26T05:25:15+08:00">2021-09-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%A3%E7%A0%81%E6%B2%89%E6%80%9D%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">代码沉思录</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>考虑如下代码：</p>
+<pre><code class="lang-java">public static void main(String[] args) &#123;
+    floatPrintTest(10000000, 10001000, 10);
+    floatPrintTest(100000000, 100001000, 10);
+
+    // 程序会陷入死循环
+    // floatPrintTest(1000000000, 1000001000, 10);
+&#125;
+
+public static void floatPrintTest(float start, float stop, float step) &#123;
+    int count = 0;
+    float distance = stop - start;
+    while (start &lt; stop) &#123;
+        count++;
+        start = start + step;
+    &#125;
+    System.out.println(distance + &quot;除以&quot; + step + &quot;等于&quot; + count);
+&#125;
+</code></pre>
+<p>程序的输出如下：</p>
+<pre><code class="lang-text">1000.0除以10.0等于100
+1000.0除以10.0等于125
+</code></pre>
+<p>同样的步进精度，同样需要步进1000个数，为什么当浮点数的位数发生变化后，输出的结果却迥然不同呢？这个就涉及到了float的值到底是怎么表达的问题了，也就是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/IEEE_754">IEEE 754二进制浮点数算术标准</a>，接下来我们就仔细探究一下float背后隐含的秘密。</p>
+<span id="more"></span> 
+<h2 id="浮点数剖析"><a href="#浮点数剖析" class="headerlink" title="浮点数剖析"></a>浮点数剖析</h2><p>根据IEEE 754的定义，一个浮点数的可以使用如下公式进行表示：</p>
+<p>\begin{equation}<br>value=sign\times exponent\times fraction<br>\end{equation}</p>
+<p>也就是说，<strong>浮点数的值</strong>等于<strong>符号位</strong>（sign bit）乘以<strong>指数偏移值</strong>（exponent bias）再乘以<strong>分数值</strong>（fraction）</p>
+<p>从二进制角度上看，一个float在存储的时候由如下三部分组成：</p>
+<p>\begin{equation}<br>\underbrace{sign} \mid \underbrace{exponent} \mid \underbrace{fraction}<br>\end{equation}</p>
+<p>以java中使用的单精度浮点数为例，其中符号位占据1位，指数偏移值占据8位，分数值占据23位，总共32位。</p>
+<p>说了这么多理论上的东西，那么到底一个浮点数的值是怎么计算出来的呢？</p>
+<h2 id="单精度浮点数的计算"><a href="#单精度浮点数的计算" class="headerlink" title="单精度浮点数的计算"></a>单精度浮点数的计算</h2><p>前面我们介绍了浮点数的表示公式和浮点数的组成，那么，一个浮点数到底应该怎么计算呢？我们先给出浮点数的计算公式：</p>
+<p>\begin{cases}<br> &amp; float=-1^S\times 2^E\times (1+M)\mid { 当 } E\neq 0 （1）\\<br> &amp; float=-1^S\times 2^E\times M\mid  { 当 } E=0且M\neq 0（2）<br>\end{cases}</p>
+<p>其中：S为符号位取值，E为根据指数偏移值计算出来的值，M为根据分数值计算出来的小数。</p>
+<p><strong>E的计算：</strong></p>
+<p>我们知道，指数偏移值一共有8位，将其转换成10进制，则其表示范围为0~255。当指数偏移值为全0或全1时，浮点数计算有特殊处理（后面会介绍），因此实际可用取值范围应为1~254。</p>
+<p>注意到表达式（1），这其中除了$2^E$之外，没有哪个部分能够表示小数，而浮点数是可以表示小数的，因此，$2^E$必须能够表达小数，即E必须有符号，所以指数偏移值在计算E时，必须有一个偏移。IEEE 754规定这个偏移值为$2^8-1=127$，也就是说，E的取值范围应该是-126~127，即为指数偏移值的计算值-127（指数偏移值不能为全0或全1）。</p>
+<p>读者可能注意到了，在计算浮点数时，分数值所表示的部分是不确定的：它由分数值和指数偏移值共同决定。一般地，我们将（1）对应的浮点数称为规约形式的浮点数，（2）对应的浮点数称为非规约形式的浮点数。非规约形式的浮点数主要是为了用于表示部分接近0的浮点数以及一些特殊的值。</p>
+<p>下表给出了单精度浮点数的各种极值情况（包括特殊值）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>正负号</th>
+<th>实际指数</th>
+<th>指数偏移值</th>
+<th>指数域</th>
+<th>尾数域</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正零</td>
+<td>0</td>
+<td>-127</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>负零</td>
+<td>1</td>
+<td>-127</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>-0.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>127</td>
+<td>0111 1111</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>1</td>
+<td>0</td>
+<td>127</td>
+<td>0111 1111</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>-1.0</td>
+</tr>
+<tr>
+<td>最小非规约数</td>
+<td>*</td>
+<td>-126</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>000 0000 0000 0000 0000 0001</td>
+<td>$\pm 2^{-23}\times 2^{-126}=\pm 2^{-149} \approx \pm 1.4\times 10^{-45}$</td>
+</tr>
+<tr>
+<td>中间大小的非规约数</td>
+<td>*</td>
+<td>-126</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>100 0000 0000 0000 0000 0000</td>
+<td>$\pm 2^{-1}\times 2^{-126}=\pm 2^{-127} \approx \pm 5.88\times 10^{-39}$</td>
+</tr>
+<tr>
+<td>最大的非规约数</td>
+<td>*</td>
+<td>-126</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>111 1111 1111 1111 1111 1111</td>
+<td>$\pm (1-2^{-23})\times 2^{-126}\approx \pm 1.18\times 10^{-38}$</td>
+</tr>
+<tr>
+<td>最小的规约数</td>
+<td>*</td>
+<td>-126</td>
+<td>1</td>
+<td>0000 0001</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>$\pm 2^{-126}\approx \pm 1.18\times 10^{-38}$</td>
+</tr>
+<tr>
+<td>最大的规约数</td>
+<td>*</td>
+<td>127</td>
+<td>254</td>
+<td>1111 1110</td>
+<td>111 1111 1111 1111 1111 1111</td>
+<td>$\pm (2-2^{-23})\times 2^{127}\approx \pm 3.4\times10^{38}$</td>
+</tr>
+<tr>
+<td>正无穷</td>
+<td>0</td>
+<td>128</td>
+<td>255</td>
+<td>1111 1111</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>$+\infty$</td>
+</tr>
+<tr>
+<td>负无穷</td>
+<td>1</td>
+<td>128</td>
+<td>255</td>
+<td>1111 1111</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>$-\infty$</td>
+</tr>
+<tr>
+<td>NaN</td>
+<td>*</td>
+<td>128</td>
+<td>255</td>
+<td>1111 1111</td>
+<td>非全0</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>对于双精度浮点数，上面的规则同样适用，只是指数偏移值的长度为11位，分数值的长度为52位而已。</p>
+<h2 id="单精度浮点数的精确性"><a href="#单精度浮点数的精确性" class="headerlink" title="单精度浮点数的精确性"></a>单精度浮点数的精确性</h2><p>从前面的计算公式我们可以看出，在表示大整数时，浮点数实际上是有最小步进精度的，这个最小步进精度由等式中的小数部分，即M决定。我们知道，浮点数的小数部分是根据分数值计算出来的，其最小步进精度为$2^{-23}$，那么，浮点数的最小步进数为$minStep=2^{-23}\times 2^E$，这也就意味着，当$E\leqslant 23$时，浮点数可以保证每次步进的值小于等于1，即可以保证整数级别的精确性，一旦$E&gt; 23$，那么就无法保证整数级别的精确性。由于$2^{-23}\approx 1.19\times 10^{-7}$，我们也可以粗略地说，当大整数的整数部分小于等于7位时，浮点数可以保证整数部分的精确性，这也就是为什么引言中的代码仅仅浮点数的位数发生变化后，输出的结果迥然不同的原因。</p>
+<p>有的读者可能会说，引言中第一个例子的整数部分有8位，为什么计算结果还是正确的呢？这个实际上就是进制转换的锅了，从上面推算精度的过程中可以看出，决定是否能够保证整数级别的精度的，其实是E是否大于23，例1中的变量<code>start</code>取值为1000000，其浮点数的计算公式为$10000000\approx 1\times 2^{23}\times 1.019209289$，E的取值等于23，所以能够保证精度。接下来我们改变一下E，验证一下我们的猜想。</p>
+<pre><code class="lang-java">public static void main(String[] args) &#123;
+    // 2^24 = 16777216，步进精度为2
+    System.out.println(&quot;E=23，步进精度为1&quot;);
+    floatPrintTest(16700000, 16700120, 1);
+    floatPrintTest(16700000, 16700120, 2);
+    floatPrintTest(16700000, 16700120, 3);
+    floatPrintTest(16700000, 16700120, 6);
+    System.out.println(&quot;\r\nE=24，步进精度为2&quot;);
+
+    // 程序会陷入死循环
+    // floatPrintTest(33000000, 33000120, 1);
+    floatPrintTest(33000000, 33000120, 2);
+    floatPrintTest(33000000, 33000120, 3);
+    floatPrintTest(33000000, 33000120, 6);
+
+    // 2^25 = 33554432，步进精度为4
+    System.out.println(&quot;\r\nE=25，步进精度为4&quot;);
+
+    // 程序会陷入死循环
+    // floatPrintTest(34000000, 34000120, 1);
+    // floatPrintTest(34000000, 34000120, 2);
+    floatPrintTest(34000000, 34000120, 3);
+    floatPrintTest(34000000, 34000120, 6);
+&#125;
+
+public static void floatPrintTest(float start, float stop, float step) &#123;
+    int count = 0;
+    float distance = stop - start;
+    while (start &lt; stop) &#123;
+        count++;
+        start = start + step;
+    &#125;
+    System.out.println(distance + &quot;除以&quot; + step + &quot;等于&quot; + count);
+&#125;
+</code></pre>
+<p>程序的输出结果为：</p>
+<pre><code class="lang-text">E=23，步进精度为1
+120.0除以1.0等于120
+120.0除以2.0等于60
+120.0除以3.0等于40
+120.0除以6.0等于20
+
+E=24，步进精度为2
+120.0除以2.0等于60
+120.0除以3.0等于30
+120.0除以6.0等于20
+
+E=25，步进精度为4
+120.0除以3.0等于30
+120.0除以6.0等于15
+</code></pre>
+<p>从输出结果就可以看出来，当E改变时，由于步进精度的改变，计算出来的结果也会发生改变。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%A0%81%E6%B5%B7%E6%8B%BE%E8%B4%9D/" rel="tag"># 码海拾贝</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Item3-SingletonProperty/" rel="prev" title="使用私有构造方法或枚举类实现Singleton属性">
+                  <i class="fa fa-chevron-left"></i> 使用私有构造方法或枚举类实现Singleton属性
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yujinzheng</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">20k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">18 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<script src="/js/prism/clipboard.js"></script>
+<script src="/js/prism/prism.js" async></script><script color="0,0,0" opacity="0.75" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
